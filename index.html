@@ -3,6 +3,8 @@
   <head> 
  <link rel="stylesheet" href="https://sans-skelly.github.io/cdn/upload_files/w3.css">
  <link rel="stylesheet" href="https://sans-skelly.github.io/cdn/upload_files/bootstrap.min.css">
+<script src="https://sans-skelly.github.io/cdn/upload_files/jquery.min.js"></script>
+<script src="https://sans-skelly.github.io/cdn/upload_files/bootstrap.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Nova+Cut|VT323');
 h1.titlemain {
@@ -22,7 +24,41 @@ h3.subtext2 {
   font-size: 24px;
 
   }
+#page {
+    display: none;
+}
+#loading {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(192, 192, 192, 0.5);
+    background-image: url("https://sans-skelly.github.io/ajax_images/ajax-loader.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
 </style>
+<script>
+function onReady(callback) {
+    var intervalID = window.setInterval(checkReady, 5000);
+    function checkReady() {
+        if (document.getElementsByTagName('body')[0] !== undefined) {
+            window.clearInterval(intervalID);
+            callback.call(this);
+        }
+    }
+}
+function show(id, value) {
+    document.getElementById(id).style.display = value ? 'block' : 'none';
+}
+onReady(function () {
+    show('page', true);
+    show('loading', false);
+});
+</script>
   </head>
   <body>
    <div id="page">
@@ -31,10 +67,11 @@ h3.subtext2 {
       		  <br>
       		  <h3 class="subtext">all your servers are come from us.</h3>
 		<br>
-		<h3 class="subtext">the paradigm isn't ready yet.&nbsp;<h3 class="subtext">this page will be updated when the paradigm has shifted</h3></h3>
+		<h3 class="subtext">the paradigm isn't ready yet. this page will be updated when the paradigm has shifted</h3>
 		<br>
     		<h3 class="subtext2">in the maintime check out:&nbsp;<a href='https://freemcs.ga/?s=mcse.ga'>freemcs.ga</a>&nbsp;for your free server. [EU]</h3>
 
      </div>
   </body>
+<div id="loading"></div>
 </html>
